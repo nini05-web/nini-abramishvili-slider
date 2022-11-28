@@ -170,10 +170,10 @@ registrationForm.addEventListener("submit", function (event) {
 
 //show hide password
 let password = document.getElementById("passwordField");
-let icon = document.getElementById("toogleIcon");
+let icon = document.getElementById("Icon");
 
 icon.addEventListener("click", function () {
-  if (password.type == "password") {
+  if (password.type == "password") { 
     password.setAttribute("type", "text");
     icon.classList.remove("fa-eye");
     icon.classList.add("fa-eye-slash");
