@@ -1,3 +1,4 @@
+// slider
 let data = [
   {
     id: 1,
@@ -108,8 +109,78 @@ function arrowRightClick() {
 arrowLeft.addEventListener("click", arrowLeftClick);
 arrowRight.addEventListener("click", arrowRightClick);
 
-setInterval(() => {
-  arrowRightClick();
-}, 3000);
+// setInterval(() => {
+//   arrowRightClick();
+// }, 3000);
 
 slide();
+
+
+
+//form validation
+let registrationForm = document.getElementById("registrationForm");
+
+registrationForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let errors = {};
+
+  //username
+  let usernameValue = document.getElementById("usernameField").value;
+  if (usernameValue == "" && usernameValue.length < 5) {
+    errors.username =
+      "Username field can not be empty and must be more then 5 chaarcters";
+  }
+
+  //password
+  let passwordValue = document.getElementById("passwordField").value;
+  let passwordValue2 = document.getElementById("passwordFieldrepeat").value;
+
+  if (passwordValue == "") {
+    errors.password = "Password field can not be empty";
+  }
+  if (passwordValue != passwordValue2) {
+    errors.password2 = "Passwords do not match";
+  }
+
+  //checkbox
+  let agreeField = document.getElementById("agreeTerms").checked;
+
+  if (!agreeField) {
+    errors.agree = "You must egree our terms and contiions";
+  }
+
+  console.log(errors);
+
+  document.querySelectorAll(".error-text").forEach((item) => {
+    item.innerText = " ";
+  });
+
+  for (let key in errors) {
+    let spanText = document.getElementById("error_" + key);
+
+    if (spanText) {
+      spanText.innerText = errors[key];
+    }
+  }
+
+  if (Object.keys(errors).length == 0) {
+    registrationForm.submit();
+  }
+});
+
+//show hide password
+let password = document.getElementById("passwordField");
+let icon = document.getElementById("toogleIcon");
+
+icon.addEventListener("click", function () {
+  if (password.type == "password") {
+    password.setAttribute("type", "text");
+    icon.classList.remove("fa-eye");
+    icon.classList.add("fa-eye-slash");
+  } else {
+    password.setAttribute("type", "password");
+    icon.classList.add("fa-eye");
+    icon.classList.remove("fa-eye-slash");
+  }
+});
+

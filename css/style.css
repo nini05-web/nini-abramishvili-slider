@@ -46,3 +46,9 @@
     background-size: cover;
     background-position: center;
 }
+
+
+.error-text{
+    color: red;
+    display: block;
+}
